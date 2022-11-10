@@ -17,5 +17,3 @@ docker push $TAG_VER
 docker push $TAG_LATEST
 
 echo "Done"
-
-cd -
