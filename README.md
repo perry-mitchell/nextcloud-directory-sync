@@ -23,3 +23,13 @@ For the app to run successfully, a number of environment variables are required:
 | `SYNC_WAIT`       | `60`          | No        | Delay, in seconds, between sync attempts.         |
 
 There is also an example `.env.example` file, showing overrides.
+
+## Quirks
+
+### Unraid & Nextcloud database locks
+
+If you're using this to sync files on Unraid, you may encounter weird SQLite database lock issues if you try to use a volume on `/mnt/user/...`. Use `/mnt/cache` where possible to avoid this.
+
+### Nextcloud: Removing all files hangs
+
+If you sync a directory and delete all the files, you'll end up with a console message such as `All the files are going to be changed, asking the user`. The application will hang here permanently. Avoid this by creating a sync'd hidden file such as `.ncignore` (must be non-empty) and leave that in the directory at all times.
